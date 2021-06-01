@@ -11,13 +11,14 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails', '~> 4.4.0'
-gem 'factory_bot_rails', '~> 6.2.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'rspec-rails', '~> 5.0.0'
+  gem 'factory_bot_rails', '~> 6.2.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -38,7 +39,6 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem 'rspec-rails', '~> 5.0.1'
   gem 'shoulda-matchers', '~> 4.5.1'
   gem 'ffaker', '~> 2.18.0'
 end
