@@ -10,3 +10,7 @@ default: &default
 development:
   <<: *default
   database: sports_hub
+
+test:
+  <<: *default
+  database: sport_hub_test
