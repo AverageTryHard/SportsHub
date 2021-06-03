@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#AverageTryHard/SportsHub.git" }
+git_source(:github) { |_repo| 'https://github.com/#AverageTryHard/SportsHub.git' }
 
 ruby '2.7.0'
 
@@ -13,6 +13,12 @@ gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 gem 'travis'
+
+# Rubocop gems
+gem 'rubocop', '~> 1.15', require: false
+gem 'rubocop-performance', require: false
+gem 'rubocop-rails', require: false
+gem 'rubocop-rspec', require: false
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
