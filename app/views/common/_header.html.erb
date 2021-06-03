@@ -1,0 +1,13 @@
+<div class="header">
+  <div style="background-color: red; width: 15%; text-align: center">
+    <h1 style="color:white; height: 100%">Sports Hub</h1>
+  </div>
+  <div style="background-color: white; width: 55%;">
+    <%= render :partial => 'common/search' if controller_name == 'user_layout'%>
+  </div>
+  <div style="width: 29%;">
+    <%= link_to "Switch", controller_name == 'admin_layout' ? 'main-page' : 'admin-cabinet' %>
+    <a>Profile</a>
+    <a>EN</a>
+  </div>
+</div>
