@@ -1,2 +1,2 @@
-class UserManagementController < ActionController
+class UserManagementController < ApplicationController
 end
