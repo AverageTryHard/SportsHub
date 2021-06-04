@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  get :admin_layout, to: 'admin_layout#user_management', path: 'admin-cabinet'
 
-  get :user_layout, to: 'user_layout#home', path: 'main-page'
+  namespace :admin do
+    root to: 'user_management#user_management'
+  end
 
-  root :to => 'admin_layout#user_management'
+  root to: 'home#home'
 end
