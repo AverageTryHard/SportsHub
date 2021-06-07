@@ -1,0 +1,13 @@
+<div class="row header">
+  <div class="col-2" style="background-color: red; text-align: center">
+    <h1 style="color:white; height: 100%">Sports Hub</h1>
+  </div>
+  <div class="col-8" style="background-color: white;">
+    <%= render :partial => 'common/search' if current_layout == 'application' %>
+  </div>
+  <div class="col">
+    <%= link_to "Switch", current_layout == 'admin_layout' ? root_path : admin_root_path %>
+    <a>Profile</a>
+    <a>EN</a>
+  </div>
+</div>
