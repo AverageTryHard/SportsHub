@@ -1,2 +1,2 @@
 # README
-[![Build Status](https://travis-ci.org/AverageTryHard/SportsHub.svg?branch=develop)](https://travis-ci.org/AverageTryHard/SportsHub)
+![Build Status](https://github.com/AverageTryHard/SportsHub/actions/workflows/ruby.yml/badge.svg)
