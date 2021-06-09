@@ -4,8 +4,8 @@
     <title>Sports Hub - Admin</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= stylesheet_link_tag 'app/views/layouts/admin.html.erb', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload' %>
+    <%#= stylesheet_link_tag 'node_modules/bootstrap-icons', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -24,10 +24,8 @@
       <div class="row menuTitle">
         <h1>Users</h1>
       </div>
-      <div class="row">
-        <div class="navigation col-2">
-          <a>Navigation</a>
-        </div>
+      <div class="admin_content row">
+        <%= render :partial => 'admin/side_menu' %>
         <div class="management col" style="height: 500px; border:1px solid black">
           <%= yield %>
         </div>

@@ -8,7 +8,29 @@
     border:1px solid black;
 }
 
-.management{
+.management {
     height: 500px;
     border:1px solid black;
+}
+
+.admin_content{
+    height: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.admin_content > div {
+    float: left;
+    height: 100%;
+}
+
+
+.icon-nav{
+    font-size: 35px;
+    color: darkgray;
+    border: none;
+}
+
+.icon-nav:hover {
+    color: #d72130;
 }
