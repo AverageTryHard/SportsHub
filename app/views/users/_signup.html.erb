@@ -1,7 +1,7 @@
 <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="signupLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <%= form_for User.new, as: :user, url: registration_path(:user) do |f| %>
+      <%= form_for User.new, as: :index, url: registration_path(:index) do |f| %>
         <%#= render "devise/shared/error_messages", resource: :user %>
 
         <div class="field">

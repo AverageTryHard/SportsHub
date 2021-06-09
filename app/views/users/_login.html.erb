@@ -1,7 +1,7 @@
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <%= form_for User.new, as: :user, url: session_path(:user) do |f| %>
+      <%= form_for User.new, as: :index, url: session_path(:index) do |f| %>
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -12,7 +12,7 @@
           <%= f.password_field :password, autocomplete: "current-password" %>
         </div>
 
-        <% if Devise.mappings[:user].rememberable? %>
+        <% if Devise.mappings[:index].rememberable? %>
           <div class="field">
             <%= f.check_box :remember_me %>
             <%= f.label :remember_me %>
