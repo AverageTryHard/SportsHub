@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sports Hub</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<div class="container-xl" style="height: 900px; overflow: auto">
+  <div class="row h-100">
+    <div class="col-4 row-cols-1" style="background-color: #666666">
+      <div class="col-4 row" style="background-color: red; text-align: center">
+        <h2 style="color:white; height: 100%">Sports Hub</h2>
+      </div>
+    </div>
+    <div class="col h-100">
+      <div class="row" style="height: 10%">
+        <div class="col-7"></div>
+        <% if controller_name != 'sign_up' %>
+          <div class="col">
+            Don't have an account?
+            <%= link_to 'Get Started', user_signs_sign_up_path %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row" style="height: 90%">
+        <div class="col align-self-start"></div>
+        <div class="col align-self-center"><%= yield %></div>
+        <div class="col align-self-end"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

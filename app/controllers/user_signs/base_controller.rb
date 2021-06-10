@@ -1,5 +1,5 @@
-module Admin
+module UserSigns
   class BaseController < ::ApplicationController
-    layout 'admin_layout'
+    layout 'user_signs_layout'
   end
 end
