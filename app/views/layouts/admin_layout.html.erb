@@ -4,8 +4,8 @@
     <title>Sports Hub - Admin</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= stylesheet_link_tag 'app/views/layouts/admin.html.erb', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload' %>
+    <%#= stylesheet_link_tag 'node_modules/bootstrap-icons', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body style="margin: 0">
@@ -20,10 +20,8 @@
       <div class="row menuTitle">
         <h1>Users</h1>
       </div>
-      <div class="row">
-        <div class="navigation col-2">
-          <a>Navigation</a>
-        </div>
+      <div class="admin_content row">
+        <%= render :partial => 'admin/side_menu' %>
         <div class="management col" style="height: 500px; border:1px solid black">
           <%= yield :admin_content %>
         </div>

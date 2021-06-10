@@ -16,13 +16,12 @@
 }
 
 .user_content{
-    height: 500px;
+    height: auto;
     overflow-x: auto;
     overflow-y: hidden;
 }
 
 .user_content > div {
     float: left;
-    border:1px solid black;
     height: 100%;
 }
