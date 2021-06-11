@@ -15,22 +15,30 @@
   </head>
 
   <body style="margin: 0">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <div class="container-xl">
+    <div class="container-xl p-0">
       <%= render :partial => 'common/header' %>
-      <div class="row" style="border: 2px solid black">
-        <div class="titleName col-10">Title</div>
-        <div class="col-2">new+</div>
-      </div>
-      <div class="row menuTitle">
-        <h1>Users</h1>
-      </div>
       <div class="row">
-        <div class="navigation col-2">
-          <%= render :partial => 'admin/side_menu' %>
+        <div class="col-10">Title</div>
+        <div class="col-2"><button class="button-xs">new+</button></div>
+      </div>
+      <div class="row menuTitle border">
+        <p>Categories</p>
+      </div>
+      <div class="row h-100">
+        <div class="h-100 border" style="flex: 0 0 auto; width: 6%;">
+          <div class="list-group m-2">
+            <i class="bi bi-check2-circle icon-nav"></i>
+            <i class="bi bi-card-text icon-nav"></i>
+            <i class="bi-b bi-globe icon-nav"></i>
+            <i class="bi bi-square icon-nav"></i>
+            <i class="bi bi-share icon-nav"></i>
+            <%= link_to admin_root_path do %><i class="bi bi-person icon-nav"></i><% end %>
+            <i class="bi bi-diagram-3 icon-nav"></i>
+            <i class="bi bi-people icon-nav"></i>
+            <i class="bi bi-briefcase icon-nav"></i>
+          </div>
         </div>
-        <div class="management col row" style="height: 500px; border:1px solid black">
+        <div class="col row p">
           <%= yield %>
         </div>
       </div>

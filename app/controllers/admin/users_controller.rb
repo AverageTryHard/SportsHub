@@ -4,16 +4,17 @@ module Admin
     before_action
     # skip_before_action :verify_authenticity_token
     def index
-      @users = User.all
-      @admins = User.select { |user| user.is_admin == true }
+      @users = policy_scope(User.all)
+      @admins = @users.select { |user| user.is_admin == true }
     end
 
     def show
-      @user = User.find(params[:id])
+      @user = policy_scope(User.find(params[:id]))
+      authorize @user
     end
 
     def update
-      @user = User.find(params[:id])
+      @user = policy_scope(User.find(params[:id]))
       if @user.update_attributes(secure_params)
         redirect_to admin_user_path, :notice => "User updated."
       else
@@ -22,7 +23,7 @@ module Admin
     end
 
     def destroy
-      user = User.find(params[:id])
+      user = policy.scope(User.find(params[:id]))
       user.destroy
       return unless user.destroyed?
 
@@ -31,11 +32,18 @@ module Admin
     end
 
     def block_user
-      @user = User.find(params[:id])
-      new_status = params[:new_status]
-      @user.update_attribute(:status, new_status)
+      @user = User.find(params['format'])
+      @user.update_attribute(:status, 'blocked')
 
-      ApplicationMailer.with(user: user).update_user_status_notify.deliver
+      ApplicationMailer.with(user: @user, status: 'blocked').updated_user_status_notify.deliver
+      redirect_to admin_root_path
+    end
+
+    def activate_user
+      @user = User.find(params['format'])
+      @user.update_attribute(:status, 'active')
+
+      ApplicationMailer.with(user: @user, status: 'activated').updated_user_status_notify.deliver
       redirect_to admin_root_path
     end
 
