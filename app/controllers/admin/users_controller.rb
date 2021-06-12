@@ -1,8 +1,5 @@
 module Admin
   class UsersController < BaseController
-    include UsersHelper
-    before_action
-    # skip_before_action :verify_authenticity_token
     def index
       @users = policy_scope(User.all)
       @admins = @users.select { |user| user.is_admin == true }

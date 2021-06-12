@@ -10,11 +10,11 @@ class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
-      # if user.is_admin?
-      #   scope
-      # else
-      #   scope.none
-      # end
+      if user.is_admin?
+        scope
+      else
+        scope.none
+      end
     end
   end
 end
