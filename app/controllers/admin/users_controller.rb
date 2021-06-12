@@ -15,10 +15,10 @@ module Admin
 
     def update
       @user = policy_scope(User.find(params[:id]))
-      if @user.update_attributes(secure_params)
-        redirect_to admin_user_path, :notice => "User updated."
+      if @user.update(secure_params)
+        redirect_to admin_user_path, notice: 'User updated.'
       else
-        redirect_to admin_user_path, :alert => "Unable to update users."
+        redirect_to admin_user_path, alert: 'Unable to update users.'
       end
     end
 
@@ -33,18 +33,22 @@ module Admin
 
     def block_user
       @user = User.find(params['format'])
-      @user.update_attribute(:status, 'blocked')
+      @user.assign_attributes({ status: 'blocked' })
 
-      ApplicationMailer.with(user: @user, status: 'blocked').updated_user_status_notify.deliver
-      redirect_to admin_root_path
+      @user.save do
+        ApplicationMailer.with(user: @user, status: 'blocked').updated_user_status_notify.deliver
+        redirect_to admin_root_path
+      end
     end
 
     def activate_user
       @user = User.find(params['format'])
-      @user.update_attribute(:status, 'active')
+      @user.assign_attributes({ status: 'active' })
 
-      ApplicationMailer.with(user: @user, status: 'activated').updated_user_status_notify.deliver
-      redirect_to admin_root_path
+      @user.save do
+        ApplicationMailer.with(user: @user, status: 'activated').updated_user_status_notify.deliver
+        redirect_to admin_root_path
+      end
     end
 
     private
