@@ -24,26 +24,26 @@ module Admin
       user.destroy
       return unless user.destroyed?
 
-      ApplicationMailer.with(user: user).destroy_user_notify.deliver
+      ApplicationMailer.with(user: user).destroy_user_notify.deliver_later
       redirect_to admin_root_path
     end
 
     def block_user
-      @user = User.find(params['format'])
+      @user = User.find(params[:id])
       @user.assign_attributes({ status: 'blocked' })
 
       @user.save do
-        ApplicationMailer.with(user: @user, status: 'blocked').updated_user_status_notify.deliver
+        ApplicationMailer.with(user: @user, status: 'blocked').updated_user_status_notify.deliver_later
         redirect_to admin_root_path
       end
     end
 
     def activate_user
-      @user = User.find(params['format'])
+      @user = User.find(params[:id])
       @user.assign_attributes({ status: 'active' })
 
       @user.save do
-        ApplicationMailer.with(user: @user, status: 'activated').updated_user_status_notify.deliver
+        ApplicationMailer.with(user: @user, status: 'activated').updated_user_status_notify.deliver_later
         redirect_to admin_root_path
       end
     end
