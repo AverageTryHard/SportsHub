@@ -1,16 +1,7 @@
-.menuTitle {
-    height: 80px;
-    border:1px solid black;
-}
+
 
 .navigation {
     height: 50px;
-    border:1px solid black;
-}
-
-.management {
-    height: 500px;
-    border:1px solid black;
 }
 
 .admin_content{
@@ -29,6 +20,7 @@
     font-size: 35px;
     color: darkgray;
     border: none;
+    padding-bottom: 1rem !important;
 }
 
 .icon-nav:hover {

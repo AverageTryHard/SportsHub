@@ -1,0 +1,15 @@
+<tr>
+  <td><%= user.full_name %></td>
+  <td><%= user.status %></td>
+  <td>
+    <% if user.status == 'active' %>
+      <%= link_to 'Block', admin_block_user_path(:id => user), :data => { :confirm => "Are you sure?"},
+                  :class => 'button-xs' unless user == current_user %>
+    <% else %>
+      <%= link_to 'Activate', admin_activate_user_path(:id => user), :data => { :confirm => "Are you sure?" },
+                  :class => 'button-xs' unless user == current_user %>
+    <% end %>
+    <%= link_to 'Delete', admin_user_path(user), :data => { :confirm => "Are you sure?" },
+                :method => :delete, :class => 'button-xs' unless user == current_user %>
+  </td>
+</tr>

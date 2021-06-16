@@ -1,0 +1,76 @@
+  <div class="table_block col-8 m-5">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab" aria-controls="users" aria-selected="true">Users</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="admins-tab" data-bs-toggle="tab" data-bs-target="#admins" type="button" role="tab" aria-controls="admins" aria-selected="false">Admins</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
+        <table class="table table-striped users_table">
+          <tr>
+            <td>Name</td>
+            <td>Status</td>
+            <td>Actions</td>
+          </tr>
+          <%= render @users %>
+        </table>
+      </div>
+      <div class="tab-pane fade" id="admins" role="tabpanel" aria-labelledby="admins-tab">
+        <table class="table table-striped users_table">
+          <tr>
+            <td>Name</td>
+            <td>Status</td>
+            <td>Actions</td>
+          </tr>
+          <% @admins.each do |admin| %>
+            <tr>
+              <td><%= admin.full_name %></td>
+              <td><%= admin.status %></td>
+              <td>
+                <%= link_to 'Remove from Admin', admin_user_path(admin),
+                            :data => { :confirm => "Are you sure?", status: new_status },
+                            :class => 'button-xs' unless admin == current_user %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">General info</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Teams</button>
+      </li>
+    </ul>
+    <div class="tab-content border" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row p-4">
+          <div class="col align-self-start"></div>
+          <div class="col align-self-center"><%= image_tag "avatar.jpg", class: "rounded-circle", style: "width: 120px" %></div>
+          <div class="col align-self-end"></div>
+        </div>
+        <div class="row p-2">
+          <div class="col ms-3">Registered</div>
+          <div class="col-3">some</div>
+        </div>
+        <div class="row p-2">
+          <div class="col ms-3">Passed Surveys</div>
+          <div class="col-3">some</div>
+        </div>
+        <div class="row p-2">
+          <div class="col ms-3">Teams</div>
+          <div class="col-3">some</div>
+        </div>
+      </div>
+      <div class="tab-pane border fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+      </div>
+    </div>
+  </div>

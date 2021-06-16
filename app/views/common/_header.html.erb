@@ -1,13 +1,23 @@
-<div class="row header">
-  <div class="col-2" style="background-color: red; text-align: center">
-    <h1 style="color:white; height: 100%">Sports Hub</h1>
+<div class="navbar navbar-expand-lg" style="height: 100px">
+  <div class="navbar-brand" style="background-color: red; text-align: center">
+    <h2 style="color:white; height: 100%">Sports Hub</h2>
   </div>
-  <div class="col-8" style="background-color: white;">
-    <%= render :partial => 'common/search' unless controller.is_a?(Admin::BaseController) %>
+  <div class="navbar-collapse" style="background-color: white;">
+    <%= render :partial => 'common/search' if current_layout == 'application' %>
   </div>
-  <div class="col">
-    <%= link_to "Switch", (controller.is_a?(Admin::BaseController)) ? root_path : admin_root_path %>
-    <a>Profile</a>
-    <a>EN</a>
+  <div class="nav mr-auto border h-100">
+    <!-- Button trigger modal -->
+    <% if user_signed_in? %>
+      <% if current_user.is_admin? %>
+        <div class="navbar-collapse align-items-center">
+          <%= link_to "Switch", current_layout == 'admin_layout' ? root_path : admin_root_path, class: "nav-link"%>
+        </div>
+      <% end %>
+      <%= render :partial => 'common/profile_item' %>
+    <% else %>
+      <div class="navbar-collapse align-items-center"><%= link_to 'Log In', new_user_session_path %></div>
+      <div class="navbar-collapse align-items-center"><%= link_to 'Sign up', new_user_registration_path %></div>
+    <% end %>
+    <div class="navbar-collapse align-items-center"><a class="nav-link" >EN</a></div>
   </div>
 </div>
