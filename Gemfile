@@ -13,6 +13,8 @@ gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 gem 'pundit'
+gem 'ransack'
+gem 'kaminari'
 
 # Rubocop gems
 gem 'rubocop', '~> 1.15', require: false
