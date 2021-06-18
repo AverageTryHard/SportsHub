@@ -16,8 +16,8 @@ module Admin
         if lang.nil?
           Language.create([:language_name => lang_name, :locale_name => locale_name])
         end
-        redirect_to admin_language_index_path
       end
+      redirect_to admin_language_index_path
     end
 
     def change_language_status
