@@ -23,7 +23,7 @@
           <td>Status</td>
           <td>Actions</td>
         </tr>
-        <%= render @users %>
+        <%= render @users, :locals => {:is_admin => params[:is_admin]} %>
       </table>
       <%= paginate @users %>
     </div>

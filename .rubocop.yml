@@ -45,6 +45,10 @@ Metrics/BlockLength:
     - draw
     - configure
     - group
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
 # Style Cops
 Style/BlockDelimiters:
   Exclude:
