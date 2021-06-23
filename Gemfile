@@ -13,6 +13,8 @@ gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 gem 'pundit'
+gem 'ransack'
+gem 'kaminari'
 
 # Rubocop gems
 gem 'rubocop', '~> 1.15', require: false
@@ -51,6 +53,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'database_cleaner-active_record'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,43 +1,31 @@
   <div class="table_block col-8 m-5">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab" aria-controls="users" aria-selected="true">Users</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="admins-tab" data-bs-toggle="tab" data-bs-target="#admins" type="button" role="tab" aria-controls="admins" aria-selected="false">Admins</button>
-      </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-        <table class="table table-striped users_table">
-          <tr>
-            <td>Name</td>
-            <td>Status</td>
-            <td>Actions</td>
-          </tr>
-          <%= render @users %>
-        </table>
+    <div class="row">
+      <div class="col-1">
+        <%= link_to "Users", admin_users_path(:is_admin => false) %>
       </div>
-      <div class="tab-pane fade" id="admins" role="tabpanel" aria-labelledby="admins-tab">
-        <table class="table table-striped users_table">
-          <tr>
-            <td>Name</td>
-            <td>Status</td>
-            <td>Actions</td>
-          </tr>
-          <% @admins.each do |admin| %>
-            <tr>
-              <td><%= admin.full_name %></td>
-              <td><%= admin.status %></td>
-              <td>
-                <%= link_to 'Remove from Admin', admin_user_path(admin),
-                            :data => { :confirm => "Are you sure?", status: new_status },
-                            :class => 'button-xs' unless admin == current_user %>
-              </td>
-            </tr>
-          <% end %>
-        </table>
+      <div class="col-1">
+        <%= link_to "Admins", admin_users_path(:is_admin => true) %>
       </div>
+      <div class="col-3">
+        <%= search_form_for @search, url: admin_users_path(is_admin: params[:is_admin]) do |f| %>
+          <%= f.search_field :first_name_or_last_name_cont %>
+        <% end %>
+      </div>
+      <div class="col-5"></div>
+      <div class="col">
+        <%= sort_link(@search, :status, 'Sort by status') %>
+      </div>
+    </div>
+    <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
+      <table class="table table-striped users_table">
+        <tr>
+          <td>Name</td>
+          <td>Status</td>
+          <td>Actions</td>
+        </tr>
+        <%= render @users, :locals => {:is_admin => params[:is_admin]} %>
+      </table>
+      <%= paginate @users %>
     </div>
   </div>
   <div class="col">
