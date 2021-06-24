@@ -10,4 +10,8 @@ module ApplicationHelper
       image_tag('avatar.jpg', class: 'rounded-circle', size: '50x50')
     end
   end
+
+  def current_locale
+    params[:locale] || session[:locale]
+  end
 end

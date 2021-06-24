@@ -1,20 +1,20 @@
 module Admin
-  class LanguageController < BaseController
+  class LanguagesController < BaseController
     def index
-      @languages = Language.all.order(:language_name)
+      @languages = Language.all.order(:language_name).limit(5)
     end
 
     def create
-      @language = Language.new(language_params)
+      @language = Language.create(language_params)
     end
 
     def create_from_select
-      language_list = params["Select Languages"]
+      language_list = params['Select Languages']
       language_list.each do |language|
         lang_name, locale_name = language.split('/')
         lang = Language.find_by('locale_name' => locale_name)
         if lang.nil?
-          Language.create([:language_name => lang_name, :locale_name => locale_name])
+          Language.create([language_name: lang_name, locale_name: locale_name])
         end
       end
       redirect_to admin_language_index_path
@@ -22,7 +22,7 @@ module Admin
 
     def change_language_status
       @language = Language.find(params['format'])
-      @language.update_attribute(:status, !@language.status)
+      @language.assign_attributes({ status: !@language.status })
       redirect_to(admin_language_index_path)
     end
 

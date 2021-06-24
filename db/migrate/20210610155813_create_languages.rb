@@ -3,7 +3,7 @@ class CreateLanguages < ActiveRecord::Migration[6.1]
     create_table :languages do |t|
       t.string :language_name, null: false
       t.string :locale_name, null: false
-      t.boolean :status, null: false, default: 'active'
+      t.boolean :status, null: false, default: true
 
       t.timestamps
     end
