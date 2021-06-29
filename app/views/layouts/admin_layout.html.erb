@@ -3,14 +3,11 @@
   <head>
     <title>Sports Hub - Admin</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <% if controller_name == 'categories' %>
-      <%= javascript_pack_tag 'category' %>
-    <% end -%>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
     <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -20,10 +17,7 @@
   <body style="margin: 0">
     <div class="container-xl p-0">
       <%= render :partial => 'common/header' %>
-      <div class="row">
-        <div class="col-10">Title</div>
-        <div class="col-2"><button class="button-xs">new+</button></div>
-      </div>
+      <%= render :partial => 'new_team' rescue nil %>
       <div class="row menuTitle border">
         <p>Categories</p>
       </div>
@@ -36,7 +30,7 @@
             <i class="bi bi-square icon-nav"></i>
             <i class="bi bi-share icon-nav"></i>
             <%= link_to admin_root_path do %><i class="bi bi-person icon-nav"></i><% end %>
-            <i class="bi bi-diagram-3 icon-nav"></i>
+            <%= link_to admin_categories_path do %><i class="bi bi-diagram-3 icon-nav"></i><% end %>
             <i class="bi bi-people icon-nav"></i>
             <i class="bi bi-briefcase icon-nav"></i>
             <i class="bi bi-megaphone icon-nav"></i>

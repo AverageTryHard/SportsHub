@@ -1,0 +1,11 @@
+<div class="row h-auto">
+  <%= link_to 'Back', admin_categories_path %>
+</div>
+<div class="row h-75">
+  <%= form_for Category, as: :category, url: admin_category_path, html: { method: :put } do |f| %>
+    <%= f.label 'Name' %><br>
+    <%= f.text_field :name, :value => @category.name %><br>
+
+    <%= f.submit "Save" %>
+  <% end %>
+</div>

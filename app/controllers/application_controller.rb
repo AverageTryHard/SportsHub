@@ -10,10 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   def layout_by_resource
-    if devise_controller?
-      'user_signs_layout'
-    else
-      'application'
-    end
+    devise_controller? ? 'user_signs_layout' : 'application'
   end
 end

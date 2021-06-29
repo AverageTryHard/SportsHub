@@ -17,10 +17,18 @@ ActiveRecord::Schema.define(version: 2021_06_14_030447) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "categories_id"
+    t.bigint "parent_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["categories_id"], name: "index_categories_on_categories_id"
+    t.index ["parent_category_id"], name: "index_categories_on_parent_category_id"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "language_name", null: false
+    t.string "locale_name", null: false
+    t.boolean "status", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "teams", force: :cascade do |t|
@@ -30,14 +38,6 @@ ActiveRecord::Schema.define(version: 2021_06_14_030447) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["categories_id"], name: "index_teams_on_categories_id"
-  end
-
-  create_table "languages", force: :cascade do |t|
-    t.string "language_name", null: false
-    t.string "locale_name", null: false
-    t.boolean "status", default: true, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
