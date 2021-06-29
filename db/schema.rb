@@ -51,6 +51,32 @@ ActiveRecord::Schema.define(version: 2021_06_24_164341) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "categories_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["categories_id"], name: "index_categories_on_categories_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "location", null: false
+    t.bigint "categories_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["categories_id"], name: "index_teams_on_categories_id"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "language_name", null: false
+    t.string "locale_name", null: false
+    t.boolean "status", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "encrypted_password", null: false

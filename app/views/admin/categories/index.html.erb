@@ -1,0 +1,54 @@
+<div class="row align-items-center">
+  <div class="table_block col-2 m-5">
+    <%= button_to "+Add category" %>
+    <table class="table" id="categoriesTable">
+      <thead>
+        <tr>
+          <td>Name</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr class="clickable-row">
+            <td><%= category.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="table_block col-2">
+    <%= button_to "+Add sub category" %>
+    <table class="table" id="subCategoriesTable">
+      <thead>
+      <tr>
+        <td>Name</td>
+      </tr>
+      </thead>
+      <tbody>
+      <% @sub_categories.each do |sub_category| %>
+        <tr class="clickable-row">
+          <td><%= sub_category.name %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table_block col-2">
+    <%= button_to "+Add team" %>
+    <table class="table" id="subCategoriesTable">
+      <thead>
+      <tr>
+        <td>Name</td>
+      </tr>
+      </thead>
+      <tbody>
+      <% @teams.each do |team| %>
+        <tr class="clickable-row">
+          <td><%= team.name %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
