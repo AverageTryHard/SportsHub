@@ -1,52 +1,88 @@
+<%= javascript_pack_tag 'category' %>
 <div class="row align-items-center">
-  <div class="table_block col-2 m-5">
-    <%= button_to "+Add category" %>
+  <div class="table_block col-3 m-5">
+    <div class="modal-block">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCategoryModal">
+        +Add category
+      </button>
+      <%= render :partial => 'admin/categories/new' %>
+    </div>
     <table class="table" id="categoriesTable">
       <thead>
         <tr>
           <td>Name</td>
+          <td></td>
         </tr>
       </thead>
       <tbody>
-        <% @categories.each do |category| %>
-          <tr class="clickable-row">
-            <td><%= category.name %></td>
-          </tr>
+        <% if @categories %>
+          <% @categories.each do |category| %>
+            <tr>
+              <td class="w-50"><%= link_to category.name, admin_categories_path(:parent_category_id => category) %></td>
+              <td><%= link_to "Edit", edit_admin_category_path(category) %>
+                  <%= link_to 'Delete', admin_category_path(category), :data => { :confirm => "Are you sure?"},
+                              :class => 'button-xs', :method => :delete %></td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
   </div>
-  <div class="table_block col-2">
-    <%= button_to "+Add sub category" %>
+  <div class="table_block col-3">
+    <div class="modal-block">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newSubCategoryModal">
+        +Add sub category
+      </button>
+      <%= render :partial => 'admin/categories/sub_new' %>
+    </div>
     <table class="table" id="subCategoriesTable">
       <thead>
       <tr>
         <td>Name</td>
+        <td></td>
       </tr>
       </thead>
       <tbody>
-      <% @sub_categories.each do |sub_category| %>
-        <tr class="clickable-row">
-          <td><%= sub_category.name %></td>
-        </tr>
+      <% if @sub_categories %>
+        <% @sub_categories.each do |sub_category| %>
+          <tr>
+            <td class="w-50"><%= link_to sub_category.name,
+                                         admin_categories_path(
+                                           :parent_category_id => @selected_category_id,
+                                           :sub_categories_id => sub_category
+                                         ) %></td>
+            <td><%= link_to "Edit", edit_admin_category_path(sub_category) %>
+                <%= link_to 'Delete', admin_category_path(sub_category), :data => { :confirm => "Are you sure?"},
+                            :class => 'button-xs', :method => :delete %></td>
+          </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>
   </div>
 
-  <div class="table_block col-2">
-    <%= button_to "+Add team" %>
-    <table class="table" id="subCategoriesTable">
+  <div class="table_block col-3">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTeamModal">
+      +Add team
+    </button>
+    <%= render :partial => 'admin/categories/new_team' %>
+    <table class="table" id="teamTable">
       <thead>
       <tr>
         <td>Name</td>
+        <td></td>
       </tr>
       </thead>
       <tbody>
-      <% @teams.each do |team| %>
-        <tr class="clickable-row">
-          <td><%= team.name %></td>
-        </tr>
+      <% if @teams %>
+        <% @teams.each do |team| %>
+          <tr>
+            <td class="w-50"><%= team.name %></td>
+            <td><%= link_to 'Edit', edit_admin_team_path(team), :class => 'button-xs' %>
+                <%= link_to 'Delete', admin_destroy_team_path(:id => team), :data => { :confirm => "Are you sure?"},
+                            :class => 'button-xs', :method => :delete %></td>
+          </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>
