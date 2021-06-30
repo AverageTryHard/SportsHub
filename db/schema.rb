@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_06_24_164341) do
   create_table "languages", force: :cascade do |t|
     t.string "language_name", null: false
     t.string "locale_name", null: false
-    t.boolean "status", default: true, null: false
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   })
 });
 
-$(document).on('change', '#language-select', function (){
+$(document).on('change', '#languages-select', function (){
   var lang = $(this).val()
   $.get('/?locale=' + lang)
 })

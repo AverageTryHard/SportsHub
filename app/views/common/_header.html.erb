@@ -20,7 +20,7 @@
     <% end %>
     <select onchange="window.location=this.value">
       <% @active_locales.each do |l| %>
-        <% if l.status %>
+        <% if l.is_active %>
           <option value="?locale=<%= l.locale_name %>" <%= current_locale == l.locale_name ? 'selected' : '' %>>
             <%= l.locale_name %>
           </option>

@@ -31,6 +31,6 @@ class ApplicationController < ActionController::Base
   end
 
   def load_locales
-    @active_locales = Language.select { |language| language.status == true }
+    @active_locales = Language.select { |language| language.is_active == true }
   end
 end

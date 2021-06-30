@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     # Language
     resources :languages
     post 'create_from_select', to: 'languages#create_from_select'
-    post 'change_language_status', to: 'languages#change_language_status'
+    put 'change_language_status', to: 'languages#change_language_status'
   end
 
   root to: 'home#home'

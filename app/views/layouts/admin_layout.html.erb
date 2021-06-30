@@ -16,7 +16,7 @@
   <body style="margin: 0">
     <div class="container-xl p-0">
       <%= render :partial => 'common/header' %>
-      <%= render :partial => 'title_new' rescue nil %>
+      <%= render :partial => 'title_new' if controller.new_object_partial_is_exist %>
       <div class="row menuTitle border">
         <p>Categories</p>
       </div>
