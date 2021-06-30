@@ -87,6 +87,8 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Create DB
       run: bundle exec rails db:prepare
+    - name: Install js libs
+      run:  yarn install
     - name: Prepare assets
       run: bundle exec rails webpacker:compile
     - name: Run tests
