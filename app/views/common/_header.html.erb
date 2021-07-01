@@ -7,10 +7,12 @@
   </div>
   <div class="nav mr-auto border h-100">
     <!-- Button trigger modal -->
-    <% if user_signed_in? && current_user.is_admin? %>
-      <div class="navbar-collapse align-items-center">
-        <%= link_to "Switch", current_layout == 'admin_layout' ? root_path : admin_root_path, class: "nav-link"%>
-      </div>
+    <% if user_signed_in? %>
+      <% if current_user.is_admin? %>
+        <div class="navbar-collapse align-items-center">
+          <%= link_to "Switch", current_layout == 'admin_layout' ? root_path : admin_root_path, class: "nav-link"%>
+        </div>
+      <% end %>
       <%= render :partial => 'common/profile_item' %>
     <% else %>
       <div class="navbar-collapse align-items-center"><%= link_to 'Log In', new_user_session_path %></div>

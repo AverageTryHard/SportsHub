@@ -6,8 +6,7 @@ module Admin
 
     def create
       @team = Teams.new(teams_params)
-
-      return unless @team.save
+      @team.save
 
       redirect_to admin_teams_path
     end
@@ -26,13 +25,15 @@ module Admin
     end
 
     def destroy
+      return if @team.blank?
+
       @team.destroy
     end
 
     private
 
     def teams_params
-      params.require(:teams).permit(:name, :location, :categories_id)
+      params.require(:teams).permit(:name, :location, :categories_id, :category)
     end
   end
 end

@@ -1,28 +1,35 @@
 module Admin
   class CategoriesController < BaseController
     def index
-      @categories = Category.select { |category| category.parent_category_id.nil? }
-      @selected_category_id = params[:parent_category_id] || @selected_category_id || @categories.first.id
+      @categories = Category.where(parent_category_id: nil).page(params[:page])
 
       return unless @categories.any?
+
+      @selected_category_id = params[:parent_category_id]
+      check_selected_category
 
       load_sub_categories_and_teams
     end
 
+    def check_selected_category
+      return if @categories.select { |category| category.id == @selected_category_id.to_i }.any?
+
+      @selected_category_id = @categories.first.id
+      params[:parent_category_id] = @selected_category_id
+    end
+
     def load_sub_categories_and_teams
-      @sub_categories = Category.select { |category| category.parent_category_id == @selected_category_id.to_i }
+      @sub_categories = Category.where(parent_category_id: @selected_category_id.to_i)
 
       return unless @sub_categories.any?
 
-      @selected_sub_category_id = params[:sub_categories_id] || @selected_sub_category_id || @sub_categories.first[:id]
+      @selected_sub_category_id = params[:sub_categories_id] || @sub_categories.first[:id]
       @teams = Teams.select { |team| team.categories_id == @selected_sub_category_id.to_i }
     end
 
     def create
       @category = Category.new(category_params)
-
-      return unless @category.save
-
+      @category.save
       redirect_to admin_categories_path
     end
 
@@ -37,8 +44,7 @@ module Admin
 
     def create_sub_category_team
       @team = Teams.new(sub_category_team_params)
-
-      return unless @team.save
+      @team.save
 
       sub_category = Category.find(@team.categories_id)
       redirect_to admin_categories_path('parent_category_id' => sub_category.parent_category_id,
@@ -92,7 +98,7 @@ module Admin
     end
 
     def sub_category_team_params
-      params.require(:teams).permit(:name, :location, :categories_id)
+      params.require(:teams).permit(:name, :location, :categories_id, :category)
     end
   end
 end

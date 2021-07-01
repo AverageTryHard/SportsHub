@@ -15,18 +15,10 @@
         </tr>
       </thead>
       <tbody>
-        <% if @categories %>
-          <% @categories.each do |category| %>
-            <tr>
-              <td class="w-50"><%= link_to category.name, admin_categories_path(:parent_category_id => category) %></td>
-              <td><%= link_to "Edit", edit_admin_category_path(category) %>
-                  <%= link_to 'Delete', admin_category_path(category), :data => { :confirm => "Are you sure?"},
-                              :class => 'button-xs', :method => :delete %></td>
-            </tr>
-          <% end %>
-        <% end %>
+        <%= render @categories || [] %>
       </tbody>
     </table>
+    <%= paginate @categories %>
   </div>
   <div class="table_block col-3">
     <div class="modal-block">
@@ -43,19 +35,17 @@
       </tr>
       </thead>
       <tbody>
-      <% if @sub_categories %>
-        <% @sub_categories.each do |sub_category| %>
-          <tr>
-            <td class="w-50"><%= link_to sub_category.name,
-                                         admin_categories_path(
-                                           :parent_category_id => @selected_category_id,
-                                           :sub_categories_id => sub_category
-                                         ) %></td>
-            <td><%= link_to "Edit", edit_admin_category_path(sub_category) %>
-                <%= link_to 'Delete', admin_category_path(sub_category), :data => { :confirm => "Are you sure?"},
-                            :class => 'button-xs', :method => :delete %></td>
-          </tr>
-        <% end %>
+      <% (@sub_categories || []).each do |sub_category| %>
+        <tr>
+          <td class="w-50"><%= link_to sub_category.name,
+                                       admin_categories_path(
+                                         :parent_category_id => @selected_category_id,
+                                         :sub_categories_id => sub_category
+                                       ) %></td>
+          <td><%= link_to "Edit", edit_admin_category_path(sub_category) %>
+              <%= link_to 'Delete', admin_category_path(sub_category), :data => { :confirm => "Are you sure?"},
+                          :class => 'button-xs', :method => :delete %></td>
+        </tr>
       <% end %>
       </tbody>
     </table>
@@ -74,15 +64,13 @@
       </tr>
       </thead>
       <tbody>
-      <% if @teams %>
-        <% @teams.each do |team| %>
-          <tr>
-            <td class="w-50"><%= team.name %></td>
-            <td><%= link_to 'Edit', edit_admin_team_path(team), :class => 'button-xs' %>
-                <%= link_to 'Delete', admin_destroy_team_path(:id => team), :data => { :confirm => "Are you sure?"},
-                            :class => 'button-xs', :method => :delete %></td>
-          </tr>
-        <% end %>
+      <% (@teams || []).each do |team| %>
+        <tr>
+          <td class="w-50"><%= team.name %></td>
+          <td><%= link_to 'Edit', edit_admin_team_path(team), :class => 'button-xs' %>
+              <%= link_to 'Delete', admin_destroy_team_path(:id => team), :data => { :confirm => "Are you sure?"},
+                          :class => 'button-xs', :method => :delete %></td>
+        </tr>
       <% end %>
       </tbody>
     </table>
