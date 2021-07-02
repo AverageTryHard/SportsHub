@@ -29,18 +29,26 @@ module Admin
     def block_user
       @user.assign_attributes({ status: 'blocked' })
 
-      @user.save do
-        ApplicationMailer.with(user: @user, status: 'blocked').updated_user_status_notify.deliver_later
+      service = UserService::ChangeStatus.new
+
+      if service.call user: @user
         redirect_to admin_root_path
+        ApplicationMailer.with(user: @user, status: 'blocked').updated_user_status_notify.deliver_later
+      else
+        flash[:error] = service.errors.first
       end
     end
 
     def activate_user
       @user.assign_attributes({ status: 'active' })
 
-      @user.save do
+      service = UserService::ChangeStatus.new
+
+      if service.call user: @user
         ApplicationMailer.with(user: @user, status: 'activated').updated_user_status_notify.deliver_later
         redirect_to admin_root_path
+      else
+        flash[:error] = service.errors.first
       end
     end
 
