@@ -47,7 +47,7 @@ module Admin
     private
 
     def secure_params
-      params.require(:user).permit(:first_name, :last_name, :status)
+      params.require(:user).permit(:first_name, :last_name, :status, :avatar)
     end
 
     def authorize_user!
