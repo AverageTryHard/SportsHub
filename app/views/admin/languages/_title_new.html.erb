@@ -1,0 +1,34 @@
+<div class="row" style="border: 2px solid black">
+  <div class="titleName col-10">Languages</div>
+  <div class="col-2">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newModal">
+      + New Language
+    </button>
+    <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addModalLabel">Add language</h5>
+          </div>
+          <%= form_tag admin_create_from_select_path, :method => :post do %>
+            <div class="modal-body">
+                <%= select_tag "Select Languages",
+                               raw("<option value='English/en'>English</option>
+                                  <option value='French/fr'>French</option>
+                                  <option value='Spanish/es'>Spanish</option>
+                                  <option value='German/gr'>German</option>"),
+                               multiple: true,
+                               class: 'form-select',
+                               id: 'languages-select'
+                %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+              <%= submit_tag 'Add', :class=>'btn btn-primary' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

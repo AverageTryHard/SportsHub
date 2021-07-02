@@ -9,7 +9,6 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
@@ -17,10 +16,7 @@
   <body style="margin: 0">
     <div class="container-xl p-0">
       <%= render :partial => 'common/header' %>
-      <div class="row">
-        <div class="col-10">Title</div>
-        <div class="col-2"><button class="button-xs">new+</button></div>
-      </div>
+      <%= render :partial => 'title_new' if controller.new_object_partial_is_exist %>
       <div class="row menuTitle border">
         <p>Categories</p>
       </div>
@@ -29,7 +25,7 @@
           <div class="list-group m-2">
             <i class="bi bi-check2-circle icon-nav"></i>
             <i class="bi bi-card-text icon-nav"></i>
-            <i class="bi-b bi-globe icon-nav"></i>
+            <%= link_to admin_languages_path do %><i class="bi-b bi-globe icon-nav"></i><% end %>
             <i class="bi bi-square icon-nav"></i>
             <i class="bi bi-share icon-nav"></i>
             <%= link_to admin_root_path do %><i class="bi bi-person icon-nav"></i><% end %>

@@ -1,7 +1,19 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :load_locales
+  around_action :switch_locale
   include Pundit
   layout :layout_by_resource
+
+  def switch_locale(&action)
+    new_locale = params[:locale] || extract_locale_from_tld || I18n.default_locale.to_s
+    I18n.with_locale(new_locale, &action)
+  end
+
+  def extract_locale_from_tld
+    parsed_locale = request.host.split('.').last
+    I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
+  end
 
   protected
 
@@ -15,10 +27,10 @@ class ApplicationController < ActionController::Base
   end
 
   def layout_by_resource
-    if devise_controller?
-      'user_signs_layout'
-    else
-      'application'
-    end
+    devise_controller? ? 'user_signs_layout' : 'application'
+  end
+
+  def load_locales
+    @active_locales = Language.select { |language| language.is_active == true }
   end
 end

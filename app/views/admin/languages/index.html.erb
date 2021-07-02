@@ -1,0 +1,17 @@
+<div class="col-4 m-5">
+  <table class="table users_table">
+    <tr>
+      <td>Languages</td>
+      <td>Status</td>
+    </tr>
+    <% @languages.each do |language| %>
+      <tr>
+        <td><%= language.language_name %></td>
+        <td>
+          <% button_name = language.is_active == true ? 'Deactivate' : 'Activate'  %>
+          <%= button_to button_name, admin_change_language_status_path(language), method: :put %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

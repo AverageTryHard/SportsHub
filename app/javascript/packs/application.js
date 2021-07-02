@@ -28,3 +28,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
   })
 });
+
+$(document).on('change', '#languages-select', function (){
+  var lang = $(this).val()
+  $.get('/?locale=' + lang)
+})
