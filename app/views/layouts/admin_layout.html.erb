@@ -3,11 +3,17 @@
   <head>
     <title>Sports Hub - Admin</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if controller_name == 'categories' %>
+      <%= javascript_pack_tag 'category' %>
+    <% end -%>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -29,7 +35,7 @@
             <i class="bi bi-square icon-nav"></i>
             <i class="bi bi-share icon-nav"></i>
             <%= link_to admin_root_path do %><i class="bi bi-person icon-nav"></i><% end %>
-            <i class="bi bi-diagram-3 icon-nav"></i>
+            <%= link_to admin_categories_path do %><i class="bi bi-diagram-3 icon-nav"></i><% end %>
             <i class="bi bi-people icon-nav"></i>
             <i class="bi bi-briefcase icon-nav"></i>
             <i class="bi bi-megaphone icon-nav"></i>

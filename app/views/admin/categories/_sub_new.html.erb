@@ -1,0 +1,24 @@
+<div class="modal fade" id="newSubCategoryModal" tabindex="-1" role="dialog" aria-labelledby="newSubCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newSubCategoryModalLabel">Add Sub Category</h5>
+      </div>
+      <%= form_for Category, as: :category,
+                   url: admin_create_sub_category_path,
+                   html: { method: :post } do |f| %>
+        <div class="modal-body">
+          <div class="field">
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: true%>
+          </div><br />
+          <%= f.hidden_field :parent_category_id, value: @selected_category_id  %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Add', :class=>'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
