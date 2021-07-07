@@ -1,7 +1,7 @@
 module Admin
   class CategoriesController < BaseController
     def index
-      @categories = Category.where(parent_category_id: nil).page(params[:page])
+      @categories = Category.primary.page(params[:page])
 
       return unless @categories.any?
 
@@ -15,7 +15,6 @@ module Admin
       return if @categories.select { |category| category.id == @selected_category_id.to_i }.any?
 
       @selected_category_id = @categories.first.id
-      params[:parent_category_id] = @selected_category_id
     end
 
     def load_sub_categories_and_teams
@@ -85,6 +84,10 @@ module Admin
       sub_category = Category.find(@team.categories_id)
       redirect_to admin_categories_path('parent_category_id' => sub_category.parent_category_id,
                                         'sub_categories_id' => sub_category.id)
+    end
+
+    def new_object_partial_is_exist
+      false
     end
 
     private
