@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 2021_07_01_073747) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "articles", force: :cascade do |t|
+    t.string "headline", null: false
+    t.string "alt_text"
+    t.string "caption", null: false
+    t.text "content", null: false
+    t.bigint "location_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_articles_on_location_id"
+  end
+
   create_table "languages", force: :cascade do |t|
     t.string "language_name", null: false
     t.string "locale_name", null: false
@@ -51,6 +62,11 @@ ActiveRecord::Schema.define(version: 2021_07_01_073747) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false

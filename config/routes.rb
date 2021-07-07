@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 
     # Teams
     resources :teams
+
+    # Articles
+    resources :articles
   end
 
   root to: 'home#home'
