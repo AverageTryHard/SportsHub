@@ -1,0 +1,32 @@
+<%= form_for @article, url: admin_articles_path, html: { method: :post } do |f| %>
+  <div class="modal-body">
+    <div class="field">
+      <%= f.label :photo %>
+      <%= f.file_field :photo %>
+    </div>
+    <div class="field">
+      <%= f.label :headline %><br />
+      <%= f.text_field :headline, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label :alt_text %><br />
+      <%= f.text_field :alt_text %>
+    </div>
+    <div class="field">
+      <%= f.label :caption %><br />
+      <%= f.text_field :caption %>
+    </div>
+    <div class="field">
+      <%= f.label :content %><br />
+      <%= f.text_area :content, rows: 10, cols: 30 %>
+    </div>
+    <div class="field">
+      <%= f.label 'Location' %><br />
+      <%= f.select :location_id, options_from_collection_for_select(@locations, :id, :name) %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+    <%= submit_tag 'Add', :class=>'btn btn-primary' %>
+  </div>
+<% end %>

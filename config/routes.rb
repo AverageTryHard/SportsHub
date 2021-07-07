@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     resources :languages
     post 'create_from_select', to: 'languages#create_from_select'
     put 'change_language_status', to: 'languages#change_language_status'
+
+    # Article
+    resources :articles
   end
 
   root to: 'home#home'
