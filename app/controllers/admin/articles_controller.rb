@@ -1,11 +1,7 @@
 module Admin
   class ArticlesController < BaseController
-    before_action :parent_info, except: [:destroy]
-    before_action :find_article!, except: [:index, :new, :create]
-
-    def index
-      @articles = Article.all
-    end
+    before_action :parent_info, except: [:destroy, :create]
+    before_action :find_article!, except: [:new, :create]
 
     def show; end
 
@@ -31,7 +27,12 @@ module Admin
     end
 
     def destroy
-      @article.destroy
+      if @article.destroy
+        redirect_to admin_user_path, notice: 'User updated.'
+      else
+        redirect_to admin_user_path, alert: 'Unable to update users.'
+      end
+
       return unless user.destroyed?
 
       ApplicationMailer.with(user: user).destroy_user_notify.deliver_later
@@ -45,7 +46,8 @@ module Admin
     private
 
     def article_params
-      params.require(:article).permit(:photo, :headline, :alt_text, :caption, :content, :location_id)
+      params.require(:article).permit(:photo, :headline, :alt_text, :caption, :content,
+                                      :location_id, :category_id)
     end
 
     def find_article!
@@ -54,6 +56,7 @@ module Admin
 
     def parent_info
       @locations = Location.all
+      @sub_categories = Category.all
     end
   end
 end

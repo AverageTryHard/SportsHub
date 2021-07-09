@@ -21,12 +21,13 @@
       <%= render 'common/header' %>
       <div class="row user_content">
         <div class="col-3">
-          Navigation
+          <%= render :partial => 'navigation' %>
         </div>
         <div class="col">
           <%= yield %>
         </div>
       </div>
+      <%= render 'footer' %>
     </div>
   </body>
 </html>

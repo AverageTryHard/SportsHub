@@ -1,9 +1,9 @@
 module Admin
   class CategoriesController < BaseController
     def index
-      @categories = Category.primary.page(params[:page])
+      @primary_categories = Category.primary.page(params[:page])
 
-      return unless @categories.any?
+      return unless @primary_categories.any?
 
       @selected_category_id = params[:parent_category_id]
       check_selected_category
@@ -12,9 +12,9 @@ module Admin
     end
 
     def check_selected_category
-      return if @categories.select { |category| category.id == @selected_category_id.to_i }.any?
+      return if @primary_categories.select { |category| category.id == @selected_category_id.to_i }.any?
 
-      @selected_category_id = @categories.first.id
+      @selected_category_id = @primary_categories.first.id
     end
 
     def load_sub_categories_and_teams

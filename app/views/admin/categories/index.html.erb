@@ -15,10 +15,10 @@
         </tr>
       </thead>
       <tbody>
-        <%= render @categories || [] %>
+        <%= render @primary_categories || [] %>
       </tbody>
     </table>
-    <%= paginate @categories %>
+    <%= paginate @primary_categories %>
   </div>
   <div class="table_block col-3">
     <div class="modal-block">

@@ -28,4 +28,7 @@ Rails.application.routes.draw do
   end
 
   root to: 'home#home'
+  get 'category_articles', to: 'home#category_articles'
+  get 'article', to: 'home#article_page'
+  resources :comments
 end

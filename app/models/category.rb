@@ -5,6 +5,7 @@ class Category < ApplicationRecord
   has_many :sub_categories, class_name: 'Category', foreign_key: 'parent_category_id',
                             inverse_of: :parent_category, dependent: :destroy
   has_many :teams, class_name: 'Teams', foreign_key: 'categories_id', inverse_of: :category, dependent: :destroy
+  has_many :articles, inverse_of: :category, dependent: :destroy
 
   scope :primary, -> { where(parent_category_id: nil) }
   scope :sub_categories, -> { where.not(parent_category: nil) }
