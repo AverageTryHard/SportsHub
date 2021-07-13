@@ -6,7 +6,6 @@
     <%= render :partial => 'common/search' if current_layout == 'application' %>
   </div>
   <div class="nav mr-auto border h-100">
-    <!-- Button trigger modal -->
     <% if user_signed_in? %>
       <% if current_user.is_admin? %>
         <div class="navbar-collapse align-items-center">

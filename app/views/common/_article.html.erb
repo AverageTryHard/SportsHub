@@ -3,10 +3,10 @@
     <%= render_article_photo(article) %>
   </div>
   <div class="article_info_box col">
-    <% if controller_name == 'article' %>
-      <h1><%= link_to article.headline, article_path('article_id' => article.id) %></h1>
-    <% elsif controller_name == 'home' %>
-      <h1><%= link_to article.headline, article_path('article_id' => article.id) %></h1>
+    <% if base_class_name == 'Admin::BaseController' %>
+      <h1><%= link_to article.headline, edit_admin_article_path(:id => article.id) %></h1>
+    <% elsif base_class_name == 'ApplicationController' %>
+      <h1><%= link_to article.headline, article_path(:id => article.id) %></h1>
     <% end %>
     <a><%= article.content %></a>
     <!--  <a><%#= article.category.name %> / <%#= category.location.name %></a>-->

@@ -4,7 +4,6 @@ class CreateArticles < ActiveRecord::Migration[6.1]
       t.string :headline, null: false
       t.string :alt_text, null: true
       t.string :caption, null: false
-      t.text :content, null: false
       t.belongs_to :location
 
       t.timestamps

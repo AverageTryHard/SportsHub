@@ -1,28 +1,36 @@
 module Admin
   class ArticlesController < BaseController
     before_action :parent_info, except: [:destroy, :create]
-    before_action :find_article!, except: [:new, :create]
+    before_action :find_article!, except: [:new, :create, :index]
+
+    def index
+      @articles = Article.where(category_id: params[:category])
+      @category = Category.find(params[:category])
+    end
 
     def show; end
 
     def new
       @article = Article.new
+      @category = Category.find(params[:category])
     end
 
     def create
       @article = Article.new(article_params)
       if @article.save
-        redirect_to admin_articles_path, notice: 'Article created.'
+        redirect_to admin_articles_path('category' => @article.category_id), notice: 'Article created.'
       else
-        redirect_to admin_articles_path, alert: 'Unable to create article.'
+        redirect_to admin_articles_path('category' => @article.category_id), alert: 'Unable to create article.'
       end
     end
 
+    def edit; end
+
     def update
-      if @article.update(secure_params)
-        redirect_to admin_articles_path, notice: 'Article updated.'
+      if @article.update(article_params)
+        redirect_to admin_articles_path('category' => @article.category_id), notice: 'Article updated.'
       else
-        redirect_to admin_articles_path, alert: 'Unable to update articles.'
+        redirect_to admin_articles_path('category' => @article.category_id), alert: 'Unable to update articles.'
       end
     end
 
@@ -37,10 +45,6 @@ module Admin
 
       ApplicationMailer.with(user: user).destroy_user_notify.deliver_later
       redirect_to admin_root_path
-    end
-
-    def new_object_partial_is_exist
-      false
     end
 
     private

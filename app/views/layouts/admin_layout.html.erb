@@ -24,11 +24,8 @@
     <p class="alert"><%= alert %></p>
     <div class="container-xl p-0 w-100">
       <%= render :partial => 'common/header' %>
+      <%= render :partial => 'title_new' %>
       <%= render :partial => 'admin/categories_header' %>
-      <%= render :partial => 'title_new' if controller.new_object_partial_is_exist %>
-      <div class="row shadow m-0">
-        <p>Categories</p>
-      </div>
       <div class="row m-0">
         <div class="h-100 icon-container w-auto">
           <div class="list-group m-2 align-items-center">

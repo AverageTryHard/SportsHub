@@ -86,10 +86,6 @@ module Admin
                                         'sub_categories_id' => sub_category.id)
     end
 
-    def new_object_partial_is_exist
-      false
-    end
-
     private
 
     def category_params

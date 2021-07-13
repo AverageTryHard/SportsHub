@@ -1,0 +1,10 @@
+<div class="row" style="border: 2px solid black; height: 60px">
+  <div class="col-10">
+    <h3><%= @category.name %></h3>
+  </div>
+  <div class="col-2">
+    <% if action_name == 'index' %>
+      <%= link_to '+ New Article', new_admin_article_path('category' => @category.id), method: :get, class: %w[btn btn-primary] %>
+    <% end %>
+  </div>
+</div>

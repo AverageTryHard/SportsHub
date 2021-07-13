@@ -1,3 +1,7 @@
+:root {
+    --site-main-color: #d72130;
+}
+
 .user_block{
     width: 100%;
 }

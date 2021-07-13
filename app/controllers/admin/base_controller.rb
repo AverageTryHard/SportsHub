@@ -11,12 +11,8 @@ module Admin
       redirect_to root_path
     end
 
-    def new_object_partial_is_exist
-      true
-    end
-
     def load_categories
-      @categories = Category.all
+      @categories = Category.primary.all
     end
   end
 end

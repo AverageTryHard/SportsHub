@@ -44,10 +44,6 @@ module Admin
       end
     end
 
-    def new_object_partial_is_exist
-      false
-    end
-
     private
 
     def secure_params

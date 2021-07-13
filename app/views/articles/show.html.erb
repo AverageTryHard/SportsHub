@@ -1,0 +1,25 @@
+<div class="article-box row" style="margin-bottom: 50px">
+  <div class="photo-box col-auto">
+    <%= render_article_photo(@article) %>
+  </div>
+  <div class="article_info_box col">
+    <h1><%= @article.headline %></h1><br/>
+    <a><%= @article.content %></a>
+  </div>
+</div>
+<div class="comment-box">
+  <%= render :partial => 'common/comments/comments', locals: { commentable: @article } %><br>
+  <% if current_user.nil? %>
+    <p>Log in to write commentary</p>
+  <% else %>
+    <%= form_for [@article, Comment.new], url: article_comments_path(@article), html: { method: :post} do |f| %>
+      <div class="field">
+        <%= f.hidden_field :user_id, value: current_user.id  %>
+      </div>
+      <div class="form-group">
+        <%= f.text_area :body, class: "form-control", placeholder: "Add a comment" %>
+      </div>
+      <%= f.submit class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,39 @@
+<div class="align-middle">
+  <div class="row h-auto">
+    <%= link_to 'Back', admin_articles_path('category' => @article.category_id) %>
+  </div>
+  <div class="row h-75">
+    <%= form_for Article, as: :article, url: admin_article_path(@article), html: { method: :put } do |f| %>
+      <%= render_article_photo(@article) %>
+      <%= f.file_field :photo, value: @article.photo %>
+
+      <div class="field">
+        <%= f.label :headline %><br />
+        <%= f.text_field :headline, autofocus: true, value: @article.headline %>
+      </div>
+
+      <div class="field">
+        <%= f.label :alt_text %><br />
+        <%= f.text_field :alt_text, value: @article.alt_text %>
+      </div>
+
+      <div class="field">
+        <%= f.label :caption %><br />
+        <%= f.text_field :caption, value: @article.caption %>
+      </div>
+
+      <%= f.label :content %><br />
+      <%= f.text_area :content, rows: 10, cols: 30, value: @article.content %>
+
+
+      <!--    <%#= f.label 'Location' %><br />-->
+      <%#= f.select :location_id, options_from_collection_for_select(@locations, :id, :name) %>
+
+
+      <%= f.hidden_field :category_id, value: @article.category_id %>
+
+
+      <%= f.submit "Save" %>
+    <% end %>
+  </div>
+</div>

@@ -20,6 +20,10 @@ module ApplicationHelper
     end
   end
 
+  def base_class_name
+    controller.class.superclass.name
+  end
+
   def current_locale
     params[:locale] || session[:locale]
   end
