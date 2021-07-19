@@ -4,7 +4,7 @@ module Admin
     before_action :find_article!, except: [:new, :create, :index]
 
     def index
-      @articles = Article.where(category_id: params[:category])
+      @articles = Article.where(category_id: params[:category]).page(params[:page])
       @category = Category.find(params[:category])
     end
 
@@ -24,7 +24,9 @@ module Admin
       end
     end
 
-    def edit; end
+    def edit
+      @article = Article.find(params[:id])
+    end
 
     def update
       if @article.update(article_params)
@@ -40,11 +42,6 @@ module Admin
       else
         redirect_to admin_user_path, alert: 'Unable to update users.'
       end
-
-      return unless user.destroyed?
-
-      ApplicationMailer.with(user: user).destroy_user_notify.deliver_later
-      redirect_to admin_root_path
     end
 
     private

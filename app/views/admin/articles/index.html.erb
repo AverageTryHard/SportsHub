@@ -1,5 +1,6 @@
 <div class="row align-items-center">
   <div class="table_block col-3 m-5">
     <%= render :partial => 'common/article', collection: @articles || [] %>
+    <%= paginate @articles %>
   </div>
 </div>

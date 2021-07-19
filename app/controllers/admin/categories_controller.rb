@@ -5,16 +5,9 @@ module Admin
 
       return unless @primary_categories.any?
 
-      @selected_category_id = params[:parent_category_id]
-      check_selected_category
+      @selected_category_id = params[:parent_category_id] || @primary_categories.first.id
 
       load_sub_categories_and_teams
-    end
-
-    def check_selected_category
-      return if @primary_categories.select { |category| category.id == @selected_category_id.to_i }.any?
-
-      @selected_category_id = @primary_categories.first.id
     end
 
     def load_sub_categories_and_teams
@@ -22,14 +15,19 @@ module Admin
 
       return unless @sub_categories.any?
 
-      @selected_sub_category_id = params[:sub_categories_id] || @sub_categories.first[:id]
-      @teams = Teams.select { |team| team.categories_id == @selected_sub_category_id.to_i }
+      @selected_sub_category_id = params[:sub_categories_id] || @sub_categories.first.id
+      @teams = Team.select { |team| team.categories_id == @selected_sub_category_id.to_i }
+      @teams = Team.where(categories_id: @selected_sub_category_id.to_i)
     end
 
     def create
       @category = Category.new(category_params)
+      if @category.save
+        redirect_to admin_categories_path, notice: 'Your category was successfully added.'
+      else
+        redirect_to admin_categories_path, alert: "Your category wasn't added."
+      end
       @category.save
-      redirect_to admin_categories_path
     end
 
     def create_sub_category
@@ -41,13 +39,26 @@ module Admin
                                         'sub_categories_id' => @sub_category.id)
     end
 
-    def create_sub_category_team
-      @team = Teams.new(sub_category_team_params)
+    def create_team
+      @team = Team.new(sub_category_team_params)
       @team.save
 
       sub_category = Category.find(@team.categories_id)
       redirect_to admin_categories_path('parent_category_id' => sub_category.parent_category_id,
                                         'sub_categories_id' => sub_category.id)
+    end
+
+    def edit_team
+      @team = Team.find(params[:id])
+    end
+
+    def update_team
+      @team = Team.find(params[:id])
+      if @team.update(teams_params)
+        redirect_to admin_categories_path, notice: 'Team updated.'
+      else
+        redirect_to admin_categories_path, alert: 'Unable to update team.'
+      end
     end
 
     def edit
@@ -65,9 +76,7 @@ module Admin
 
     def destroy
       @category = Category.find(params[:id])
-      if @category.present?
-        @category.destroy
-      end
+      @category.destroy
       if @category.parent_category_id.nil?
         redirect_to admin_categories_path
       else
@@ -76,10 +85,8 @@ module Admin
     end
 
     def destroy_team
-      @team = Teams.find(params[:id])
-      if @team.present?
-        @team.destroy
-      end
+      @team = Team.find(params[:id])
+      @team.destroy
 
       sub_category = Category.find(@team.categories_id)
       redirect_to admin_categories_path('parent_category_id' => sub_category.parent_category_id,

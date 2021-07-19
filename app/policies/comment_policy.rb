@@ -8,6 +8,8 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def create?
+    return if user.nil?
+
     true
   end
 
@@ -16,7 +18,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    return unless record.user_id == user.id && user.is_admin?
+    return unless record.user_id == user.id
 
     true
   end
