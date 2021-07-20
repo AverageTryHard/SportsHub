@@ -7,6 +7,9 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 
+require('trix')
+require('@rails/actiontext')
+
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
@@ -37,3 +40,5 @@ $(document).on('change', '#languages-select', function (){
   var lang = $(this).val()
   $.get('/?locale=' + lang)
 })
+require("trix")
+require("@rails/actiontext")

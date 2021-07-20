@@ -11,6 +11,19 @@ module ApplicationHelper
     end
   end
 
+  def render_article_photo(article)
+    photo_size = '300x150'
+    if article.photo.attached?
+      image_tag(article.photo, size: photo_size)
+    else
+      image_tag('avatar.jpg', size: photo_size)
+    end
+  end
+
+  def base_class_name
+    controller.class.superclass.name
+  end
+
   def current_locale
     params[:locale] || session[:locale]
   end

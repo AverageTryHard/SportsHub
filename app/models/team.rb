@@ -1,6 +1,6 @@
-class Teams < ApplicationRecord
+class Team < ApplicationRecord
   validates :name, presence: true
   validates :location, presence: true
   validates :categories_id, presence: true
-  belongs_to :category, class_name: 'Category', inverse_of: :teams, optional: true
+  belongs_to :categories, class_name: 'Category', inverse_of: :teams
 end

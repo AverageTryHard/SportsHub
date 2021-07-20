@@ -1,6 +1,7 @@
 module Admin
   class BaseController < ::ApplicationController
     before_action :check_user_is_admin
+    before_action :load_categories
     layout 'admin_layout'
 
     def check_user_is_admin
@@ -10,8 +11,8 @@ module Admin
       redirect_to root_path
     end
 
-    def new_object_partial_is_exist
-      true
+    def load_categories
+      @categories = Category.primary.all
     end
   end
 end

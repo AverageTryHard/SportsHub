@@ -1,26 +1,31 @@
 module Admin
   class TeamsController < BaseController
     def index
-      @teams = Teams.all
+      @teams = Team.all
+    end
+
+    def new
+      @team = Team.new
+      @sub_categories = Category.sub_categories
     end
 
     def create
-      @team = Teams.new(teams_params)
+      @team = Team.new(teams_params)
       @team.save
 
       redirect_to admin_teams_path
     end
 
     def edit
-      @team = Teams.find(params[:id])
+      @team = Team.find(params[:id])
     end
 
     def update
-      @team = Teams.find(params[:id])
+      @team = Team.find(params[:id])
       if @team.update(teams_params)
-        redirect_to admin_categories_path, notice: 'Team updated.'
+        redirect_to admin_teams_path, notice: 'Team updated.'
       else
-        redirect_to admin_categories_path, alert: 'Unable to update team.'
+        redirect_to admin_teams_path, alert: 'Unable to update team.'
       end
     end
 

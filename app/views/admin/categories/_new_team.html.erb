@@ -4,7 +4,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="newTeamModalLabel">Add Team</h5>
       </div>
-      <%= form_for Teams, as: :teams, url: admin_create_sub_category_team_path, html: { method: :post } do |f| %>
+      <%= form_for Team, as: :teams, url: admin_create_team_path, html: { method: :post } do |f| %>
         <div class="modal-body">
           <div class="field">
             <%= f.label :name %><br />

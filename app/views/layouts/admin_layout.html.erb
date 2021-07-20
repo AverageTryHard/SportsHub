@@ -20,23 +20,23 @@
   </head>
 
   <body style="margin: 0">
-    <div class="container-xl p-0">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class="container-xl p-0 w-100">
       <%= render :partial => 'common/header' %>
-      <%= render :partial => 'title_new' if controller.new_object_partial_is_exist %>
-      <div class="row menuTitle border">
-        <p>Categories</p>
-      </div>
-      <div class="row h-100">
-        <div class="h-100 border" style="flex: 0 0 auto; width: 6%;">
-          <div class="list-group m-2">
+      <%= render :partial => 'title_new' %>
+      <%= render :partial => 'admin/categories_header' %>
+      <div class="row m-0">
+        <div class="h-100 icon-container w-auto">
+          <div class="list-group m-2 align-items-center">
             <i class="bi bi-check2-circle icon-nav"></i>
             <i class="bi bi-card-text icon-nav"></i>
-            <%= link_to admin_languages_path do %><i class="bi-b bi-globe icon-nav"></i><% end %>
+            <%= link_to admin_languages_path, class: 'icon-nav' do %><i class="bi bi-globe"></i><% end %>
             <i class="bi bi-square icon-nav"></i>
             <i class="bi bi-share icon-nav"></i>
-            <%= link_to admin_root_path do %><i class="bi bi-person icon-nav"></i><% end %>
-            <%= link_to admin_categories_path do %><i class="bi bi-diagram-3 icon-nav"></i><% end %>
-            <i class="bi bi-people icon-nav"></i>
+            <%= link_to admin_root_path, class: 'icon-nav' do %><i class="bi bi-person"></i><% end %>
+            <%= link_to admin_categories_path, class: 'icon-nav' do %><i class="bi bi-diagram-3"></i><% end %>
+            <%= link_to admin_teams_path, class: 'icon-nav' do %><i class="bi bi-people icon-nav"></i><% end %>
             <i class="bi bi-briefcase icon-nav"></i>
             <i class="bi bi-megaphone icon-nav"></i>
           </div>

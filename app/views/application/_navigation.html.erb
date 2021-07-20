@@ -1,0 +1,16 @@
+<div class="navigation-block">
+  <% (@categories || []).each do |category| %>
+    <%= link_to category.name, articles_path('category_id': category.id)  %><br>
+  <% end %>
+</div>
+<div class="follow-block">
+  <a>Follow:</a>
+  <div class="row">
+    <i class="bi bi-facebook col-2 icon-nav"></i>
+    <i class="bi bi-twitter col-1 icon-nav"></i>
+  </div>
+  <div class="row">
+    <i class="bi bi-google col-2 icon-nav"></i>
+    <i class="bi bi-youtube col-1 icon-nav"></i>
+  </div>
+</div>

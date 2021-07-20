@@ -17,11 +17,19 @@ Rails.application.routes.draw do
     # Categories
     resources :categories
     post 'create_sub_category', to: 'categories#create_sub_category'
-    post 'create_sub_category_team', to: 'categories#create_sub_category_team'
+    post 'create_team', to: 'categories#create_team'
+    put 'edit_team', to: 'categories#edit_team'
     delete 'destroy_team', to: 'categories#destroy_team'
 
-    # Teams
+    # Team
     resources :teams
+
+    # Articles
+    resources :articles
+  end
+
+  resources :articles do
+    resources :comments
   end
 
   root to: 'home#home'

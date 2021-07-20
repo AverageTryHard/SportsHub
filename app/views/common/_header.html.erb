@@ -1,12 +1,11 @@
 <div class="navbar navbar-expand-lg" style="height: 100px">
-  <div class="navbar-brand" style="background-color: red; text-align: center">
-    <h2 style="color:white; height: 100%">Sports Hub</h2>
+  <div class="navbar-brand h-100 w-25 text-center" style="background-color: #d72130; padding-top: 25px">
+    <h3 style="color:white;">Sports Hub</h3>
   </div>
   <div class="navbar-collapse" style="background-color: white;">
     <%= render :partial => 'common/search' if current_layout == 'application' %>
   </div>
   <div class="nav mr-auto border h-100">
-    <!-- Button trigger modal -->
     <% if user_signed_in? %>
       <% if current_user.is_admin? %>
         <div class="navbar-collapse align-items-center">

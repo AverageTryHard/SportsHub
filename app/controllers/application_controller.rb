@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :load_locales
+  before_action :load_categories
   around_action :switch_locale
   include Pundit
   layout :layout_by_resource
@@ -32,5 +33,9 @@ class ApplicationController < ActionController::Base
 
   def load_locales
     @active_locales = Language.select { |language| language.is_active == true }
+  end
+
+  def load_categories
+    @categories = Category.primary.all
   end
 end
