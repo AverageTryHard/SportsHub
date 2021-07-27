@@ -13,4 +13,6 @@ class Article < ApplicationRecord
   validates :caption, presence: true, length: { maximum: 100 }
   validates :location_id, presence: true
   validates :category_id, presence: true
+
+  scope :published, -> { where(is_published: true) }
 end

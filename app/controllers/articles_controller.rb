@@ -2,10 +2,10 @@ class ArticlesController < ApplicationController
   layout 'application'
 
   def index
-    @articles = Article.where(category_id: params[:category_id]).page(params[:page])
+    @articles = Article.published.where(category_id: params[:category_id]).page(params[:page])
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = Article.published.find(params[:id])
   end
 end
