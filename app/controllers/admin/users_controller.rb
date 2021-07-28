@@ -8,7 +8,9 @@ module Admin
       @users = policy_scope(@search.result.where(is_admin: params[:is_admin])).page(params[:page])
     end
 
-    def show; end
+    def show
+      render json: { html: User.find(params[:id]) }
+    end
 
     def update
       if @user.update(secure_params)

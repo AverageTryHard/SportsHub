@@ -1,4 +1,6 @@
-  <div class="table_block col-8 m-5">
+<%= javascript_pack_tag 'admin_user' %>
+<%#= stylesheet_link_tag '' %>
+<div class="table_block col-8 m-5">
     <div class="row">
       <div class="col-1">
         <%= link_to "Users", admin_users_path(:is_admin => false) %>
@@ -17,7 +19,7 @@
       </div>
     </div>
     <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-      <table class="table table-striped users_table">
+      <table id='users_table' class="table table-striped">
         <tr>
           <td>Name</td>
           <td>Status</td>
@@ -46,15 +48,15 @@
         </div>
         <div class="row p-2">
           <div class="col ms-3">Registered</div>
-          <div class="col-3">some</div>
+          <div class="col text-end"><a class="m-3" id='user_registered'></a></div>
         </div>
         <div class="row p-2">
           <div class="col ms-3">Passed Surveys</div>
-          <div class="col-3">some</div>
+          <div class="col text-end"><a class="m-3" id='user_surveys'>-</a></div>
         </div>
         <div class="row p-2">
           <div class="col ms-3">Teams</div>
-          <div class="col-3">some</div>
+          <div class="col text-end"><a class="m-3" id='user_teams'>-</a></div>
         </div>
       </div>
       <div class="tab-pane border fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
