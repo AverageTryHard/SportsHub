@@ -22,6 +22,13 @@
         <%= f.text_field :caption, value: @article.caption, :required => true %>
       </div>
 
+      <div class="field">
+        <%= f.label 'Published' %><br />
+        <div class="form-check form-switch">
+          <%= f.check_box :is_published, class: "form-check-input", id: "isPublishedSwitch" %>
+        </div>
+      </div>
+
       <%= f.label :content %><br />
       <%= f.rich_text_area :content, value: @article.content %>
 

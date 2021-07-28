@@ -48,7 +48,7 @@ module Admin
 
     def article_params
       params.require(:article).permit(:photo, :headline, :alt_text, :caption, :content,
-                                      :location_id, :category_id)
+                                      :location_id, :category_id, :is_published)
     end
 
     def find_article!
